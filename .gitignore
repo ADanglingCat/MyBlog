@@ -14,4 +14,4 @@ node_modules
 *.epub
 *.mobi
 *.pdf
-_book
+/_book
