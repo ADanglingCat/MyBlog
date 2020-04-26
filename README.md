@@ -1,4 +1,3 @@
-# Introduction
+# Headline
 
-[SUMMARY](SUMMARY.md)
-
+> An awesome project.

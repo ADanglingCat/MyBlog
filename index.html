@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
+</head>
+<body>
+  <div id="app">Please wait...</div>
+  <script>
+    window.$docsify = {
+      name: 'MyBlog',
+      repo: 'https://github.com/dw12278/MyBlog',
+	  loadSidebar: true,
+	  subMaxLevel: 2
+    }
+  </script>
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-java.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+  <script>
+	  const gitalk = new Gitalk({
+		clientID: '31a9001e8f3fc338e633',
+		clientSecret: '11e21aa99a534bf5ebcfa1b1e1c1694c6891e097',
+		repo: 'https://github.com/dw12278/MyBlog',
+		owner: 'dw12278',
+		admin: ['dw12278'],
+		// facebook-like distraction free mode
+		distractionFreeMode: false
+	  })
+	</script>
+</body>
+</html>
