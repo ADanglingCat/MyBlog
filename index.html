@@ -14,6 +14,7 @@
   <script>
     window.$docsify = {
       name: 'MyBlog',
+	  logo: '/_assert/logo.svg',
       repo: 'https://github.com/dw12278/MyBlog',
 	  loadSidebar: true,
 	  subMaxLevel: 2,
@@ -56,5 +57,10 @@
 		distractionFreeMode: false
 	  })
 	</script>
+  <script>
+	if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('sw.js')
+    }
+  </script>
 </body>
 </html>
