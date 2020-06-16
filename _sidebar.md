@@ -8,4 +8,5 @@
     * [Javadoc](tool/javadoc.md)
     * [Redis](tool/redis.md)
     * [Docsify](tool/docsify.md)
+    * [Nginx](tool/nginx.md)
 
