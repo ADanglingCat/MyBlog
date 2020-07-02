@@ -53,7 +53,7 @@ redis-cli --raw
 set key value [ex 10]
 setex key 10 value
 setrange key 0 a
-#存在才修改
+#存在才修改(常用作分布式锁)
 setnx key value
 #获取,获取子字符串
 get key
@@ -71,10 +71,6 @@ mset key1 value1 key2 value2
 mget key1 key2
 #字符串长度
 strlen key
-#二进制
-setbit key value
-getbit key
-bitcount key
 ```
 
 ### 2.2 Hash类型(存储对象)
@@ -111,7 +107,7 @@ lpop key
 lindex key 
 #截取指定区间
 ltrim key 1 2
-#阻塞弹出(list为空时等待60s,再停止)
+#阻塞弹出(list为空时等待60s,再停止.可用于消息队列)
 blpop key 60
 ```
 
@@ -169,6 +165,41 @@ zinterstore
 
 ```
 
+### 2.6 bitMaps
+
+```shell
+#offset从0开始
+setbit key offset value
+getbit key offset
+#1的数量,start end 是byte位置,不是bit位置 1byte = 8bit
+bitcount key [start end]
+#指定范围内第一个0或1的位置
+bitpos key 0|1 [start] [end]
+#批处理,从0开始获取4位,u代表无符号数,i代表有符号数
+bitfiled key get u4 0 get i4 1
+#用98转化为8位有符号二进制,代替第8位开始的数字
+bitfield key set type offset value
+bitfield key set u8 8 98
+
+```
+
+### 2.7 HyperLogLog
+
+```shell
+#估算元素数量(类似set,自动去重)
+pfadd key v1 v2
+pfcount key
+pf merge k1 k2
+```
+
+### 2.8 BloomFilter
+
+```shell
+#布隆过滤器,类似set,可以估算元素是否已存在,确定是否不存在
+
+
+```
+
 
 
 ## 3. 基本使用
@@ -188,19 +219,39 @@ publish channel msg
 multi 开始事务
 exec执行事务
 
+### 3.3 lua脚本
+
+```shell
+redis-cli --eval scriptName.lua key1 , argv1
+eval "script" keyCount key1 argv1
+
+if redis.call("get",KEYS[1]) == ARGV[1] then
+	return redis.call("del",KEYS[1])
+else
+    print("hello word")
+
+end
+```
+
+
+
 ```java
 //注解
 //Cache	缓存接口，定义缓存操作。实现有:RedisCache、EhCacheCache、ConcurrentMapCache等
-CacheManager	//缓存管理器，管理各种缓存（cache）组件
-@Cacheable	//方法被调用时，先从缓存中读取数据，如果缓存没有找到数据，再调用方法获取数据，然后把数据添加到缓存中
+//缓存管理器，管理各种缓存（cache）组件
+CacheManager	
+//方法被调用时，先从缓存中读取数据，如果缓存没有找到数据，再调用方法获取数据，然后把数据添加到缓存中
+@Cacheable	
 @CacheEvict	//清空缓存
 @CachePut	//执行方法后缓存,常用于更新
-EnableCaching /开启基于注解的缓存
-keyGenerator	缓存数据时key生成策略
-serialize	缓存数据时value序列化策略
-@CacheConfig 统一配置本类的缓存注解的属性
-@Caching 对多个缓存进行分组 
-  @Caching(evict = { 
-           @CacheEvict("addresses"),        @CacheEvict(value="directory",key="#customer.name") })
+EnableCaching //开启基于注解的缓存
+keyGenerator	//缓存数据时key生成策略
+serialize	//缓存数据时value序列化策略
+//统一配置本类的缓存注解的属性
+@CacheConfig 
+//对多个缓存进行分组 
+@Caching(evict = { 
+  @CacheEvict("addresses"),        @CacheEvict(value="directory",key="#customer.name") })
+  
 ```
 
