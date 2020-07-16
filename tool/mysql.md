@@ -1,6 +1,6 @@
 # Mysql
 
-1. ##常用命令
+1. ## 常用命令
 
 ```mysql
 #创建用户
@@ -18,8 +18,8 @@ show full processlist;
 ```shell
 # 修改配置文件的端口绑定
 sudo vim /etc/mysql/my.cnf
-  # 没有该文件则尝试
-  sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+	# 没有该文件则尝试
+	sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
   # 注释掉bind-address = 127.0.0.1
 # 修改访问权限
 mysql -u root -p XXX

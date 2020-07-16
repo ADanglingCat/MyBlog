@@ -196,8 +196,10 @@ pf merge k1 k2
 
 ```shell
 #布隆过滤器,类似set,可以估算元素是否已存在,确定是否不存在
-
-
+#首先根据几个不同的 hash 函数给元素进行 hash 运算一个整数索引值，拿到这个索引值之后，对位数
+#组的长度进行取模运算，得到一个位置，每一个 hash 函数都会得到一个位置，将位数组中对应的位置
+#设置位 1 ，这样就完成了添加操作。
+#可以通过bf.reserve k1 0.001(错误率) 10000(预估容量) 进行配置,错误率越低,占用空间越大,超过预估容量错误率会上升
 ```
 
 
@@ -231,6 +233,24 @@ else
     print("hello word")
 
 end
+```
+
+### 3.4 限流
+
+```java
+/**
+*使用pipeline 管道操作,提高效率
+*创建zset,user_action 设置key,curTime 设置score,时间窗+1 设置过期时间
+*查询当前zset容量,与设置的阈值比较
+*/
+Pipeline pipelined = jedis.pipelined();
+pipelined.multi();
+pipelined.zadd(key, nowTime, String.valueOf(nowTime));
+Response<Long> response = pipelined.zcard(key);
+pipelined.expire(key, period + 1);
+pipelined.exec();
+pipelined.close();
+return response.get() <= maxCount;
 ```
 
 
