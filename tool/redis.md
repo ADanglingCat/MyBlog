@@ -5,10 +5,18 @@
 ### 1.1 linux
 
 ```shell
+#安装
+sudo apt-get update
+sudo apt-get install redis-server
+#配置
+/etc/redis
+#启动,停止
 /etc/init.d/redis-server stop
 /etc/init.d/redis-server start
 /etc/init.d/redis-server restart
-
+#启动客户端
+redis-cli -a pwd
+sf'ds'f
 #删除key
 del key
 #序列化key
