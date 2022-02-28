@@ -12,8 +12,6 @@ docsify init ./docs
 docsify serve docs
 ```
 
-
-
 ## 基本设置
 
 * `index.html` 入口文件,相关配置也在里面
@@ -45,6 +43,3 @@ docsify serve docs
 
 * `README.md` 首页内容
 * `.nojekyll` prevents GitHub Pages from ignoring files that begin with an underscore
-
-
-
