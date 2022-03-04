@@ -1,6 +1,6 @@
 # Redis
 
-## 1. 常用命令
+## 1. 安装
 
 ### 1.1 linux
 
@@ -48,26 +48,50 @@ chcp 65001
 redis-cli --raw
 ```
 
+### 1.3 mac
 
-
-
+```shell
+#下载
+brew install redis
+#启动服务.也可通过redis-server启动
+brew services start redis
+#启动客户端 [-a 密码]
+redis-cli
+#查看所有数据(生产环境禁止使用,数据量大的时候会卡死)
+keys *
+#迭代查看数据库中的数据 SCAN cursor [MATCH pattern] [COUNT count]
+#每次返回一个新的cursor,下次迭代时使用来继续遍历,返回0代表已经结束
+scan 0 count 50
+#查看类型
+type key
+#删除
+del key
+```
 
 ##  2. 数据结构
 
-### 2.1 String类型
+> redis 数据是以key-value格式存储的.其中key是string类型,value常用的数据结构有string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。
+
+### 2.1 string
+
+> string是最常用的类型: key - value
 
 ```shell
-#设置键值对[10秒过期]
-set key value [ex 10]
-setex key 10 value
-setrange key 0 a
-#存在才修改(常用作分布式锁)
-setnx key value
-#获取,获取子字符串
+##基本操作
+#新增/更新
+set key value
+#获取
 get key
-getrange key 1
-#删除(可以删除所有类型的key)
-del key
+#新增并设置自动过期[10秒过期]
+set key value ex 10
+##进阶操作
+#存在才修改(常用作分布式锁)
+setex key 10 value
+#不存在才修改(常用作分布式锁)
+setnx key value
+#将key的第一位字符设置为a
+setrange key 0 a
+getrange key 1 1
 #追加字符串
 append key appendValue
 #减1(value必须是数字) incr incrby  incrbyfloat
@@ -81,18 +105,25 @@ mget key1 key2
 strlen key
 ```
 
-### 2.2 Hash类型(存储对象)
+### 2.2 hash
+
+> hash 适合用来存储对象: key - field1: value1; field2: value2. 它的value是多个key-value组成的映射
 
 ```shell
-#basic
+##基本操作
+#设置
 hmset key field1 value1 field2 value2
-hmget key [field1]
+#获取多个属性的值
+hmget key field1 field2...
+#操作单个field
 hset key field1 value1
 hget key field1
 hdel key field1 field2
-#返回所有key,所有value,所有key,value
+#返回所有key
 hkeys key
+#获取所有value
 hvals key
+#获取所有key,value
 hgetall key
 #判断是否存在属性
 hexists key field
@@ -104,7 +135,9 @@ hincrby key field n
 
 
 
-### 2.3 List类型(有序,可重复)
+### 2.3 list
+
+> 有序可重复的列表,一个key 对应多个value
 
 ```shell
 #基本操作
@@ -119,7 +152,9 @@ ltrim key 1 2
 blpop key 60
 ```
 
-### 2.4 Set类型(无序,不可重复)
+### 2.4 set
+
+> 无序且不可重复
 
 ```shell
 #基本操作
@@ -141,12 +176,13 @@ sunion set1 set2
 
 ```
 
+### 2.5 zset
 
-
-### 2.5 zset类型(有序,不可重复)
+> sorted set,有序且不可重复,在set类型的基础上,给每个key增加了一个score属性,元素按照score排序
 
 ```shell
-zadd key score1 v1 s2 v2
+#新增数据
+zadd key score value
 zrem key v1
 #指定区间数量
 zlexcount key - +
