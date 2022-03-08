@@ -374,4 +374,3 @@
      </configuration>
      ```
 
-## 6.

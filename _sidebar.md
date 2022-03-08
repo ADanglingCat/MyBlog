@@ -12,6 +12,7 @@
   * [docker](tool/docker.md)
   * [druid](tool/druid.md)
   * [curl](tool/curl.md)
+  * [idea](tool/idea.md)
 * [java](java/readme.md)
   * [date](java/date.md)
 * [acm](acm/readme.md)
