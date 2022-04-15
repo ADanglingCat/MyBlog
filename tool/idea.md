@@ -31,7 +31,7 @@
 
 * 运行idea, 激活方式选择服务器, 然后输入`https://jetbra.in`, 点击`ACTIVATE`即可
 
-  ![image-20220308152701319](https://s2.loli.net/2022/03/08/u4fCDBwAepHhU6l.png)
+  
 
 ## 2. 配置
 
@@ -48,3 +48,5 @@
 * LeetCode Editor
 * Translation
 * Alibaba Java Coding Guidelines
+* Atom
+* 
