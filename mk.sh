@@ -1,14 +1,27 @@
+#!/bin/zsh
 #声明方法
 mk_dir(){
-	if [ ! -d $1 ];then
-		mkdir $1
-    echo "# $1" > $1/readme.md
-    echo "# $2" > $1/$2.md
-    echo "\n* [$1]($1/readme.md)\n\t* [$2]($1/$2.md)" >> _sidebar.md
+  dir=$1
+	if [ ! -d $dir ];then
+    echo mkdir $dir
+		mkdir $dir
+    echo "# $dir" > $dir/readme.md
+    echo "* [$dir]($dir/readme.md)" >> _sidebar.md
 	else
-		echo $1 existed
+		echo $dir existed
 	fi
 }
-
+mk_file(){
+  file=$1/$2.md
+  filename=$2
+	if [ ! -f $file ];then
+    echo mkfile $file
+    echo "# $filename" > $file
+    echo "\t* [$filename]($file)" >> _sidebar.md
+  else
+    echo $file existed
+  fi
+}
 #脚本执行时自动调用方法
 mk_dir $1 $2
+mk_file $1 $2

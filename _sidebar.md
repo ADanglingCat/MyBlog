@@ -11,6 +11,7 @@
   * [druid](tool/druid.md)
   * [curl](tool/curl.md)
   * [idea](tool/idea.md)
+  * [launchctl](tool/launchctl.md)
 * [java](java/readme.md)
   * [java](java/java.md)
 * [acm](acm/readme.md)

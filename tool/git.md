@@ -1,6 +1,6 @@
 # Git
 
-## 1. git 常用命令
+## 1. 常用命令
 
 * 切换远程地址
 
@@ -62,7 +62,7 @@
   #同步tag
   git push origin name
   git push --tags
-git fetch origin tag name
+  git fetch origin tag name
   ```
   
 * 分支管理
