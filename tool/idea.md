@@ -24,7 +24,8 @@
 
   ```shell
   #dmg安装: ~/Library/Application Support/JetBrains/IntelliJIdea2021.3/idea.vmoptions
-  #homebrew 安装: /Applications/IntelliJ\ IDEA.app/Contents/bin/idea.vmoptions
+  #homebrew安装: /Applications/IntelliJ\ IDEA.app/Contents/bin/idea.vmoptions
+  #toolbox安装:/Users/tedmosby/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U/ch-0/213.7172.25/IntelliJ\ IDEA.app.vmoptions
   #添加内容: -javaagent:/你解压后的ja-netfilter.jar文件路径
   -javaagent:/Users/tedmosby/sw/ja-netfilter/ja-netfilter.jar
   ```
@@ -43,10 +44,14 @@
 
 * 选择覆盖本地配置
 
+* 主题: GitHub Contrast 字体: MesloLgS NF 16
+
+* 配色: material Lighter 字体: JetBrains Mono 20
+
 ### 2.2 下载插件
 
 * LeetCode Editor
 * Translation
 * Alibaba Java Coding Guidelines
-* Atom
-* 
+* Atom Material Icons
+* Material Theme UI Lite
