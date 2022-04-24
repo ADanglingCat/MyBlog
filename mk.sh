@@ -17,11 +17,11 @@ mk_file(){
 	if [ ! -f $file ];then
     echo mkfile $file
     echo "# $filename" > $file
-    echo "\t* [$filename]($file)" >> _sidebar.md
+    echo "\t* [$filename]($file \"$3\")" >> _sidebar.md
   else
     echo $file existed
   fi
 }
 #脚本执行时自动调用方法
 mk_dir $1 $2
-mk_file $1 $2
+mk_file $1 $2 $3
